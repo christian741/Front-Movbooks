@@ -1,0 +1,17 @@
+<ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="6" class="ion-text-center">
+      <h3>Selecciona una imagen</h3>
+      <img *ngIf="imgTemp" class="image-selected" [src]="imgTemp"/>
+      <img *ngIf="currentImage && !imgTemp" class="image-selected" 
+          [src]="currentImage | imageUrl: 'Profiles'"/>
+      <br/>
+      <input type="file" name="file" id="file" class="fileInput" accept="image/*" 
+              (change)="changeImage( $event.target.files[0] )"/>
+      <label for="file">
+        <ion-icon name="images"></ion-icon>
+        {{ labelInputFile }}
+      </label>
+    </ion-col>
+  </ion-row>
+</ion-grid>

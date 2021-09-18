@@ -1,0 +1,13 @@
+.img-profile {
+    width: 50%;
+    height: 210px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.avatar-profile {
+    width: 40%;
+    height: 230px;
+    cursor: pointer;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}

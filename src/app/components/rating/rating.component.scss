@@ -1,0 +1,16 @@
+i {
+    cursor: pointer;
+    font-size: 20px !important;
+    margin-right: 5px;
+    color: rgb(255, 202, 51);
+    opacity: .8;
+}
+
+i:hover {
+    opacity: 1;
+}
+
+.rating-selected {
+    font-size: 30px !important;
+    opacity: 1;
+}

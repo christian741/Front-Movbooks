@@ -1,0 +1,7 @@
+{
+  "name": "MovBooks",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

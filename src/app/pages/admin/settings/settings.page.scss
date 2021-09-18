@@ -1,0 +1,13 @@
+.ion-card {
+    cursor: pointer !important;
+}
+
+.my-custom-class {
+    .btn-cancel {
+        background-color: var(--ion-color-light) !important;
+    }
+    .btn-save {
+        color: var(--ion-color-light) !important;
+        background-color: var(--ion-color-tertiary) !important;
+    }
+}

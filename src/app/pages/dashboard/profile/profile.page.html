@@ -1,0 +1,20 @@
+<app-header title="Cuenta"></app-header>
+
+<ion-content class="ion-padding" color="light">
+    <ion-grid>
+        <ion-row class="ion-justify-content-center" *ngIf="user">
+            <ion-col size-md="4" size-xs="12">
+                <ion-card class="ion-text-center ion-padding-top">
+                    <img *ngIf="user.avatar" (click)="presentModalEditImage()" 
+                        [src]="user.avatar | avatarImg" class="avatar-profile" />
+                    <img *ngIf="user.image" (click)="presentModalEditImage()" 
+                        [src]="user.image | imageUrl: 'Profiles'" class="img-profile" />
+                    <ion-card-header>
+                        <small>{{ user.email }}</small>
+                        <ion-card-title>{{ user.nickname }}</ion-card-title>
+                    </ion-card-header>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

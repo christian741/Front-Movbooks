@@ -1,0 +1,58 @@
+<app-header title="Detalles película" [backButton]="true"></app-header>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="8" size-sm="10" size-xs="12">
+        <ion-card *ngIf="movieDetails">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size-md="4" size-sm="5" size-xs="12">
+                <img [src]="movieDetails.poster_path | movieImg" class="movie-thumbnail" />
+              </ion-col>
+              <ion-col size-md="8" size-sm="7" size-xs="12" class="ion-text-start">
+                <div class="ion-padding">
+                  <!-- <p>
+                      <span *ngFor="let author of movieDetails.volumeInfo.authors">{{ author }}&nbsp;</span>
+                  </p> -->
+                  <p>
+                    <small>{{ movieDetails.release_date | date: 'yyyy/MM/dd' }}</small>
+                  </p>
+                  <h1>{{ movieDetails.title }}</h1>
+                  <p>
+                      <span>{{ movieDetails.original_title }}</span>
+                  </p>
+                  <br/>
+                  <p>
+                    <ion-icon class="icon-star" size="large" *ngFor="let n of [1,2,3]" name="star"></ion-icon>
+                    <ion-icon class="icon-star" size="large" *ngFor="let n of [4,5]" name="star-outline"></ion-icon>
+                  </p>
+                  <br/>
+                  <p *ngIf="movieDetails.overview.length > 400">
+                    {{ movieDetails.overview | 
+                        slice:0:(readMore ? movieDetails.overview.length : 400) }}
+                    <a style="cursor: pointer;" (click)="readMore = !readMore">
+                      Leer {{ readMore ? 'menos' : 'más' }}
+                    </a>
+                  </p>
+                  <p *ngIf="movieDetails.overview.length <= 400">
+                    {{ movieDetails.overview }}
+                  </p>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer style="padding: 7px;">
+  <a target="_blank" href="https://www.themoviedb.org/">
+      <img class="ion-float-left" width="150px" height="15px" 
+          src="assets/images/TMDbLogoAttribution.png"/>
+  </a>
+</ion-footer>

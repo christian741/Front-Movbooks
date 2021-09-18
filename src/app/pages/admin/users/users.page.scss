@@ -1,0 +1,17 @@
+.spinner-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.img-avatar {
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+.img-profile {
+    width: 75%;
+    min-height: 140px;
+}
+.users ion-card {
+    cursor: pointer !important;
+}
+

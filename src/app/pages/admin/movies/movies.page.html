@@ -1,0 +1,40 @@
+<app-header title="Películas"></app-header>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="tertiary" (click)="presentModalCreateOrUpdate()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-grid *ngIf="moviesDetails && moviesDetails.length === 0">
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="8">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>No se encontraron registros</ion-card-subtitle>
+                    </ion-card-header>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="moviesDetails">
+        <ion-row class="ion-justify-content-start">
+            <ion-col size-md="4" size-sm="6" size-xs="12" *ngFor="let movie of moviesDetails">
+                <!-- Card book component -->
+                <app-card-movie [editable]="true" [movieDetails]="movie"
+                    (presentEdit)="presentModalCreateOrUpdate($event)">
+                </app-card-movie>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
+
+<ion-footer style="padding: 7px;">
+    <a target="_blank" href="https://www.themoviedb.org/">
+        <img class="ion-float-left" width="150px" height="15px" 
+            src="assets/images/TMDbLogoAttribution.png"/>
+    </a>
+</ion-footer>

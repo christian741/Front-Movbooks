@@ -1,0 +1,40 @@
+<app-header title="Libros"></app-header>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="tertiary" (click)="presentModalCreateOrUpdate()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-grid *ngIf="booksDetails && booksDetails.length === 0">
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="8">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>No se encontraron registros</ion-card-subtitle>
+                    </ion-card-header>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="booksDetails">
+        <ion-row class="ion-justify-content-start">
+            <ion-col size-md="4" size-sm="6" size-xs="12" *ngFor="let book of booksDetails">
+                <!-- Card book component -->
+                <app-card-book [editable]="true" [bookDetails]="book" class="card-book"
+                    (presentEdit)="presentModalCreateOrUpdate($event)">
+                </app-card-book>
+            </ion-col> 
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
+
+<ion-footer style="padding: 7px;">
+    <a target="_blank" href="https://books.google.es/">
+        <img class="ion-float-left" width="150px" height="20px" 
+            src="assets/images/powered_by_google_on_white_hdpi.png"/>
+    </a>
+</ion-footer>

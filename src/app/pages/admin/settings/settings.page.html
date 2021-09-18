@@ -1,0 +1,40 @@
+<app-header title="Ajustes"></app-header>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+
+    <!-- fab placed to the bottom end -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="insert()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size-md="4" size-sm="6" size-xs="10">
+                <ion-card>
+                    <ion-card-header class="ion-text-center">
+                        <ion-card-title>Parámetros del sistema</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <!-- List of Sliding Items -->
+                        <ion-list *ngIf="parameters">
+                            <ion-item *ngFor="let param of parameters">
+                                <ion-label>
+                                    <span style="font-weight: bold; color: #616161;">{{ param.key }}</span>
+                                    <p>{{ param.value }}</p>
+                                </ion-label>
+                                <ion-button slot="end" (click)="edit(param)">
+                                    <ion-icon name="create"></ion-icon>
+                                </ion-button>
+                                <ion-button slot="end" color="danger" (click)="delete(param)">
+                                    <ion-icon name="trash"></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-list>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

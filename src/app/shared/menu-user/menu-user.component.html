@@ -1,0 +1,21 @@
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="light">
+      <ion-title>Bienvenido !</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Opciones</ion-label>
+      </ion-list-header>
+      <!-- Cuando se selecciona un item el menu se oculta.  -->
+      <ion-menu-toggle autoHide="false" *ngFor="let item of items">
+        <ion-item [routerLink]="'/dashboard/' + item.path" detail>
+          <ion-icon slot="start" [name]="item.icon" color="primary"></ion-icon>
+          <ion-label>{{ item.label }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

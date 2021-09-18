@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Categorias </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="tertiary" (click)="presentModalCreateOrUpdate()">
+          <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+
+  <ion-grid *ngIf="booksDetails && booksDetails.length === 0">
+      <ion-row class="ion-justify-content-center">
+          <ion-col size="8">
+              <ion-card>
+                  <ion-card-header>
+                      <ion-card-subtitle>No se encontraron registros</ion-card-subtitle>
+                  </ion-card-header>
+              </ion-card>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="genders">
+      <ion-row class="ion-justify-content-start">
+          <ion-col size-md="4" size-sm="6" size-xs="12" *ngFor="let gender of genders">
+              <!-- Card book component -->
+              <app-card-book [editable]="true" [genders]="gender" class="card-book"
+                  (presentEdit)="presentModalCreateOrUpdate($event)">
+              </app-card-book>
+          </ion-col> 
+      </ion-row>
+  </ion-grid>
+
+</ion-content>

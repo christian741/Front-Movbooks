@@ -1,0 +1,25 @@
+<ion-card>
+  <ion-card-content>
+    <ion-list>
+      <ion-list-header>Reseñas</ion-list-header>
+
+      <ion-item *ngIf="totalCount === 0" lines="none">
+        <ion-label>
+          <code>No hay reseñas todavía</code>
+        </ion-label>
+      </ion-item>
+    
+      <ion-item *ngFor="let item of ratingsMovies">
+        <ion-avatar slot="start">
+          <img *ngIf="item.user.avatar" [src]="item.user.avatar | avatarImg">
+          <img *ngIf="item.user.image" [src]="item.user.image | imageUrl: 'Profiles'">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.user.nickname }}</h2>
+          <p>{{ item.comment }}</p>
+        </ion-label>
+      </ion-item>
+    
+    </ion-list>
+  </ion-card-content>
+</ion-card>

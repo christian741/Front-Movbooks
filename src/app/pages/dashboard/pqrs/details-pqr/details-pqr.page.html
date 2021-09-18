@@ -1,0 +1,38 @@
+<app-header-modal title="Detalles PQR"></app-header-modal>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+
+    <ion-card *ngIf="pqr">
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-avatar slot="start">
+              <img *ngIf="pqr.user.avatar" [src]="pqr.user.avatar | avatarImg">
+              <img *ngIf="pqr.user.image" [src]="pqr.user.image | imageUrl: 'Profiles'">
+            </ion-avatar>
+            <ion-label class="ion-text-wrap">
+              <p>{{ pqr.description | slice:0:300 }}</p>
+              <code><small>{{ pqr.createdDate | date: 'short' }}</small></code>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card *ngIf="pqr">
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label position="floating">Respuesta</ion-label>
+            <ion-textarea readonly [value]="pqr.answer"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-badge [color]="pqr.answered ? 'success' : 'light'">
+              {{ pqr.answered ? 'Respondida' : 'Pendiente' }}
+            </ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>

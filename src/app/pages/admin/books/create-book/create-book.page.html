@@ -1,0 +1,67 @@
+<app-header-modal [title]="(bookId ? 'Actualizar' : 'Nuevo') + ' libro'"></app-header-modal>
+
+<ion-content [fullscreen] class="ion-padding">
+  <ion-slides [options]="slideOpts">
+    <ion-slide>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size-md="10" size="12">
+            <form [formGroup]="bookForm" (ngSubmit)="submit()">
+              <ion-list>
+                <!-- Title -->
+                <ion-item>
+                  <ion-label position="floating">Título *</ion-label>
+                  <ion-icon name="book" slot="start" class="ion-align-self-center"></ion-icon>
+                  <ion-input type="text" formControlName="title"></ion-input>
+                </ion-item>
+                <div class="ion-text-start">
+                  <small *ngIf="title.pristine || title.valid || title.pending"
+                       style="visibility: hidden;">none</small>
+                  <small class="text-danger" 
+                    *ngIf="title.dirty && title.hasError('required')">
+                    El título es <strong>requerido</strong>
+                  </small>
+                  <small class="text-danger" 
+                    *ngIf="title.dirty && title.hasError('minlength')">
+                    El título es demasiado corto
+                  </small>
+                  <small class="text-danger" 
+                    *ngIf="title.dirty && title.hasError('uniqueTitle')">
+                    El libro ya se ha registrado
+                  </small>
+                </div>
+    
+                <!-- Description -->
+                <ion-item>
+                  <ion-label position="floating">Descripción</ion-label>
+                  <ion-icon name="document-text" slot="start" class="ion-align-self-center"></ion-icon>
+                  <ion-textarea autoGrow="true" formControlName="description"></ion-textarea>
+                </ion-item>
+                <div class="ion-text-start">
+                  <small *ngIf="description.pristine || description.valid"
+                    style="visibility: hidden;">none</small>
+                  <small class="text-danger" 
+                    *ngIf="description.dirty && description.hasError('required')">
+                    La descripción es <strong>requerida</strong>
+                  </small>
+                  <small class="text-danger" 
+                    *ngIf="description.dirty && description.hasError('minlength')">
+                    La descripción es demasiado corta
+                  </small>
+                </div>
+              </ion-list>
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-md="6" size-sm="8" size-xs="12">
+                  <ion-button type="submit" color="tertiary" expand="full" shape="round"
+                    [disabled]="bookForm.invalid || bookForm.pending">
+                    {{ bookId ? 'Actualizar' : 'Registrar' }}
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

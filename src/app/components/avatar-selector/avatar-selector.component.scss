@@ -1,0 +1,17 @@
+.pick-avatar {
+    width: 60px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.pick-avatar-selected {
+    width: 65px;
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+a {
+    text-decoration: none;
+}

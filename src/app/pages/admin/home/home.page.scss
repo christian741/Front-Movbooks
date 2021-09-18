@@ -1,0 +1,17 @@
+ion-slides, ion-slide {
+    width: 100%;
+    height: 100%;
+}
+ion-icon {
+    font-size: 50px !important;
+}
+ion-card:hover {
+    box-shadow: -3px -3px 10px #F24150, 3px 3px 10px #03A6A6;
+}
+// En pantallas de 992px o más 
+// Explicación condicional: cuando la pantalla(screen) mínimo tenga 992px
+@media screen and (min-width: 992px) {
+    ion-grid {
+        margin-top: -70px !important;
+    }
+}

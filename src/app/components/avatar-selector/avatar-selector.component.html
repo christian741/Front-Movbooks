@@ -1,0 +1,29 @@
+<ion-grid>
+  <ion-row class="ion-margin-bottom">
+    <ion-col class="ion-text-center">
+        <h3>Selecciona un avatar</h3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+        <ion-slides #slides [options]="avatarSlidesOpts">
+          <ion-slide *ngFor="let avatar of avatars; let i = index;">
+              <img class="pick-avatar" 
+                      [src]="avatar.img | avatarImg"
+                      [ngClass]="{ 'pick-avatar-selected': avatar.selected }"
+                      (click)="selectAvatar(avatar, i)"/>
+          </ion-slide>
+        </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <small>
+        Icons created by 
+        <a target="_blank" href="https://www.behance.net/MoAdam">Moritz Adam</a>
+         from 
+        <a target="_blank" href="https://www.behance.net/">Behance</a>
+      </small>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,49 @@
+<app-header title="Películas"></app-header>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+
+    <ion-grid *ngIf="moviesDetails">
+
+        <ion-row class="ion-justify-content-center">
+            <ion-col size-md="6" size="12">
+              <ion-searchbar debounce="300" 
+                             [(ngModel)]="title" (ionChange)="filterTitle()"
+                             showCancelButton="focus"
+                             placeholder="Buscar película"></ion-searchbar>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="moviesDetails && moviesDetails.length === 0" class="ion-justify-content-center">
+            <ion-col size-md="8" size="12">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>No se encontraron registros</ion-card-subtitle>
+                    </ion-card-header>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-start">
+            <ion-col size-md="4" size-sm="6" size-xs="12" *ngFor="let movie of moviesDetails">
+                <!-- Card movie component -->
+                <app-card-movie [movieDetails]="movie" class="card-book">
+                </app-card-movie>
+            </ion-col> 
+        </ion-row>
+    </ion-grid>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
+
+<ion-footer style="padding: 7px;">
+    <a target="_blank" href="https://books.google.es/">
+        <img class="ion-float-left" width="150px" height="20px" 
+            src="assets/images/powered_by_google_on_white_hdpi.png"/>
+    </a>
+</ion-footer>

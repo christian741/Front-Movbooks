@@ -1,0 +1,22 @@
+<app-header-modal title="Cambiar imagen"></app-header-modal>
+
+<ion-content class="ion-padding" color="light" *ngIf="viewEntered">
+  <ion-slides [pager]="true">
+    <ion-slide>
+      <ion-card *ngIf="user">
+        <ion-card-content>
+          <app-avatar-selector [current]="user.avatar || 'av1.png'" (avatarSelected)="user.avatar = $event"></app-avatar-selector>
+          <ion-button color="tertiary" (click)="editAvatar()">Guardar</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card *ngIf="user">
+        <ion-card-content>
+          <app-image-upload [currentImage]="user.image" (imageSelected)="image = $event"></app-image-upload>
+          <ion-button [disabled]="!image" color="tertiary" (click)="editImage()">Guardar</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

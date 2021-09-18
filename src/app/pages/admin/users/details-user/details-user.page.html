@@ -1,0 +1,35 @@
+<app-header-modal title="Detalles usuario"></app-header-modal>
+
+<ion-content [fullscreen]>
+  <ion-slides [options]="slideOpts">
+    <ion-slide>
+      <ion-card class="ion-padding-top" *ngIf="user">
+        <div class="ion-text-center">
+          <img *ngIf="user.avatar" [src]="user.avatar | avatarImg" class="avatar-img"/>
+          <img *ngIf="user.image" [src]="user.image | imageUrl: 'Profiles'" class="profile-img"/>
+        </div>
+        <ion-card-header>
+          <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+          <ion-card-title>{{ user.nickname }}</ion-card-title>
+          <p>
+            <small>
+              <b>Registro: </b>
+              {{ user.registrationDate | date: 'short' }}
+            </small>
+          </p>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item lines="none">
+              <ion-toggle slot="start" color="success" [(ngModel)]="user.enabled" 
+                (ngModelChange)="updateUser()"></ion-toggle>
+              <ion-label>
+                {{ user.enabled ? 'Habilitado' : 'Deshabilitado' }}
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

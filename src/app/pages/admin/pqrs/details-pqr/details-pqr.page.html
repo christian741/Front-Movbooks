@@ -1,0 +1,50 @@
+<app-header-modal title="Responder PQR"></app-header-modal>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+
+    <ion-card *ngIf="pqr">
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-avatar slot="start">
+              <img *ngIf="pqr.user.avatar" [src]="pqr.user.avatar | avatarImg">
+              <img *ngIf="pqr.user.image" [src]="pqr.user.image | imageUrl: 'Profiles'">
+            </ion-avatar>
+            <ion-label class="ion-text-wrap">
+              <span class="text-muted-bold">{{ pqr.user.nickname }}</span>
+              <p>{{ pqr.description | slice:0:300 }}</p>
+              <code><small>{{ pqr.createdDate | date: 'short' }}</small></code>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card *ngIf="pqr">
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Respuesta</ion-label>
+            <ion-textarea placeholder="Ingresa una respuesta" [(ngModel)]="pqr.answer" #answer="ngModel" required></ion-textarea>
+          </ion-item>
+          <div>
+            <small *ngIf="answer.pristine || answer.valid"
+              style="visibility: hidden;">none</small>
+            <small class="text-danger" 
+              *ngIf="answer.dirty && answer.hasError('required')">
+              La respuesta es <strong>requerida</strong>
+            </small>
+          </div>
+        </ion-list>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size-md="4" size-sm="6" size-xs="10">
+            <ion-button [disabled]="answer.invalid" color="tertiary" (click)="respond()" 
+              expand="full" shape="round">
+              {{ pqr.answered ? 'Actualizar' : 'Guardar' }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>

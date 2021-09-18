@@ -1,0 +1,60 @@
+<app-header title="Usuarios"></app-header>
+
+<ion-content [fullscreen] class="ion-padding" color="light">
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="6" size="12">
+        <ion-searchbar debounce="300" [(ngModel)]="filtro"
+                       showCancelButton="focus"
+                       placeholder="Buscar usuario"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+        <ion-card *ngIf="users.length === 0 || (users | usersFilter: filtro).length === 0" class="ion-margin-top">
+          <ion-card-header>
+            <ion-card-subtitle>No se encontraron resultados</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+
+        <ion-grid>
+          <ion-row class="ion-justify-content-center users">
+            <ion-col size-md="2" size-sm="3" size-xs="6"
+              *ngFor="let user of (users | usersFilter: filtro)">
+              <ion-card class="ion-padding-top" (click)="details(user.id)" @cardAnimation>
+                <div class="ion-text-center">
+                  <img *ngIf="user.avatar" [src]="user.avatar | avatarImg" class="img-avatar" width="50%"/>
+                  <img *ngIf="user.image" [src]="user.image | imageUrl: 'Profiles'" class="img-profile"/>
+                </div>
+                <ion-card-header>
+                  <small>{{ user.email }}</small>
+                  <ion-card-title>{{ user.nickname }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <!-- content -->
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-row class="ion-justify-content-start">
+    <ion-col>
+      <small>
+        Icons created by 
+        <a target="_blank" href="https://www.behance.net/MoAdam">Moritz Adam</a>
+         from 
+        <a target="_blank" href="https://www.behance.net/">Behance</a>
+      </small>
+    </ion-col>
+  </ion-row>
+</ion-footer>
+
+
