@@ -13,7 +13,13 @@ export const environment = {
   blacklistedRoutes: [
     'https://localhost:44365/api/account/login',
     'https://localhost:44365/api/account/register',
-  ]
+  ],
+  googleBooks:{
+    EnableTrackingGenders : true,
+  },
+  movieApi:{
+    EnableTrackingGenders : true,
+  }
 };
 
 /*

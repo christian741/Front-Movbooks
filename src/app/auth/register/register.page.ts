@@ -22,6 +22,11 @@ export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   avatar = 'av1.png';
 
+  showPassword = false;
+  passwordToggleIcon = 'eye';
+  showPasswordConfirm = false;
+  passwordConfirmToggleIcon = 'eye';
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -115,4 +120,21 @@ export class RegisterPage implements OnInit {
     this.registerForm.reset();
   }
 
+  togglePassword(){
+    this.showPassword = !this.showPassword;
+    if(this.showPassword){
+      this.passwordToggleIcon = 'eye-off';
+    }else{
+      this.passwordToggleIcon = 'eye';
+    }
+  }
+
+  toggleConfirmPassword(){
+    this.showPasswordConfirm = !this.showPasswordConfirm;
+    if(this.showPasswordConfirm){
+      this.passwordConfirmToggleIcon = 'eye-off';
+    }else{
+      this.passwordConfirmToggleIcon = 'eye';
+    }
+  }
 }

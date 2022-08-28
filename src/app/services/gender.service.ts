@@ -33,8 +33,9 @@ export class GenderService {
                   );
   }
 
-  insertGender(movie: Gender): Observable<Gender> {
-    return this.http.post<Gender>(`${ this.url }`, movie);
+  insertGender(gender: Gender): Observable<Gender> {
+    //console.log([gender]);
+    return this.http.post<Gender>(`${ this.url }`, gender);
   }
 
   updateGender(id: number, gender: Gender): Observable<any> {

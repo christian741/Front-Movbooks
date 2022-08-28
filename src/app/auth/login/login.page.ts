@@ -16,6 +16,9 @@ export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
 
+  private showPassword = false;
+  private passwordToggleIcon = 'eye';
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -77,5 +80,14 @@ export class LoginPage implements OnInit {
 
   ionViewDidLeave(): void {
     this.loginForm.reset();
+  }
+
+  tooglePassword(){
+    this.showPassword = !this.showPassword;
+    if(this.showPassword){
+      this.passwordToggleIcon = 'eye-off';
+    }else{
+      this.passwordToggleIcon = 'eye';
+    }
   }
 }

@@ -5,6 +5,11 @@ import { BooksService } from './../../../services/books.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 
+//Automatic Save Genders
+import { GenderService } from './../../../services/gender.service';
+import { Movie } from 'src/app/models/movie.model';
+import { Gender } from 'src/app/models/gender.model';
+
 @Component({
   selector: 'app-books',
   templateUrl: './books.page.html',
@@ -27,7 +32,8 @@ export class BooksPage implements OnInit {
 
   constructor(
     private booksService: BooksService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private genderService: GenderService
   ) { }
 
   ngOnInit() {
@@ -64,9 +70,18 @@ export class BooksPage implements OnInit {
               // Obtener los detalles del libro
               this.booksService.getBookDetails(book.title)
                   .subscribe(bookDetails => {
+                    //console.log([bookDetails]);
                       if (bookDetails) {
                         bookDetails.bookId = book.id;
                         this.booksDetails.push(bookDetails);
+                        // Insert new Gender
+                        let genders = bookDetails.volumeInfo.categories;
+                        genders.forEach((gender)=>{
+                          this.genderService.insertGender(new Gender(gender,book.id,"book"))
+                          .subscribe(response => {
+                            console.log(response);
+                          });
+                        });
                       }
                     }
                   );

@@ -5,6 +5,9 @@ import { Movie } from './../../../models/movie.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 
+import { GenderService } from './../../../services/gender.service';
+import { Gender } from 'src/app/models/gender.model';
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.page.html',
@@ -27,7 +30,8 @@ export class MoviesPage implements OnInit {
 
   constructor(
     private moviesService: MoviesService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private genderService: GenderService,
   ) { }
 
   ngOnInit() {
@@ -60,6 +64,14 @@ export class MoviesPage implements OnInit {
             data.forEach((movie: Movie) => {
               this.moviesService.getMovieDetails(movie.title)
                   .subscribe(movieDetails => {
+                    console.log([movieDetails]);
+                    /*let genders = movieDetails.volumeInfo.categories;
+                        genders.forEach((gender)=>{
+                          this.genderService.insertGender(new Gender(gender))
+                          .subscribe(response => {
+                            console.log(response);
+                          });
+                        });*/
                     if (movieDetails) {
                       movieDetails.movieId = movie.id;
                       this.moviesDetails.push(movieDetails);
