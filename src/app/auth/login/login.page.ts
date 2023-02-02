@@ -15,9 +15,8 @@ import { ToastService } from './../../services/toast.service';
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
-
-  private showPassword = false;
-  private passwordToggleIcon = 'eye';
+  showPassword = false;
+  passwordToggleIcon = 'eye';
 
   constructor(
     private fb: FormBuilder,

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Gender {\n  constructor(_names, _idMorph, _typeMorph) {\n    this.name = _names;\n    this.idMorph = _idMorph;\n    this.typeMorph = _typeMorph;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

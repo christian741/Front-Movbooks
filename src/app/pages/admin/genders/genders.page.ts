@@ -12,8 +12,8 @@ import { GenderFilter } from '../../../query-filters/gender.filter';
 })
 export class GendersPage implements OnInit {
 
-
   genders: any[] = [];
+
   constructor(private genderService: GenderService,
     private toastService: ToastService,
     private modalCtrl: ModalController,
