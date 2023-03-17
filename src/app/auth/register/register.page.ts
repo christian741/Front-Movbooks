@@ -22,6 +22,13 @@ export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   avatar = 'av1.png';
 
+  showPassword = false;
+  passwordToggleIcon = 'eye';
+  showPasswordConfirm = false;
+  passwordConfirmToggleIcon = 'eye';
+
+  routeActive = true;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -37,12 +44,12 @@ export class RegisterPage implements OnInit {
       nickname: [
         '',
         [Validators.required, Validators.minLength(6)],
-        this.uniqueNicknameValidator.validate.bind(this.uniqueNicknameValidator)
+        //this.uniqueNicknameValidator.validate.bind(this.uniqueNicknameValidator)
       ],
       email: [
         '',
         [Validators.required, Validators.email],
-        this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator)
+        //this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator)
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -60,24 +67,24 @@ export class RegisterPage implements OnInit {
     const { confirmPassword, ...props } = this.registerForm.value;
     const user: User = {
       ...props,
-      roleId: 1,
+      roleId: 2,
       avatar: this.avatar
     };
 
     // Registrar usuario
     this.authService.register(user)
-          .subscribe(
-            _ => this.router.navigateByUrl('/'),
-            err => {
-              console.error(err);
-              loading.dismiss();
-              this.toastService.presentToast({
-                message: 'Ha ocurrido un error',
-                duration: 2000
-              });
-            },
-            () => loading.dismiss()
-          );
+      .subscribe(
+        _ => this.router.navigateByUrl('/'),
+        (exp) => {
+          console.error([exp]);
+          loading.dismiss();
+          this.toastService.presentToast({
+            message: exp.error,
+            duration: 2000
+          });
+        },
+        () => loading.dismiss()
+      );
   }
 
   // Validator password Match
@@ -85,7 +92,7 @@ export class RegisterPage implements OnInit {
     return (formGroup: FormGroup) => {
       const pass1Control = formGroup.get(pass1);
       const pass2Control = formGroup.get(pass2);
-      if (pass1Control.value === pass2Control.value){
+      if (pass1Control.value === pass2Control.value) {
         pass2Control.setErrors(null);
       } else {
         pass2Control.setErrors({ notEquals: true });
@@ -115,4 +122,25 @@ export class RegisterPage implements OnInit {
     this.registerForm.reset();
   }
 
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+    if (this.showPassword) {
+      this.passwordToggleIcon = 'eye-off';
+    } else {
+      this.passwordToggleIcon = 'eye';
+    }
+  }
+
+  toggleConfirmPassword() {
+    this.showPasswordConfirm = !this.showPasswordConfirm;
+    if (this.showPasswordConfirm) {
+      this.passwordConfirmToggleIcon = 'eye-off';
+    } else {
+      this.passwordConfirmToggleIcon = 'eye';
+    }
+  }
+
+  activeTitle() {
+    this.routeActive = !this.routeActive;
+  }
 }

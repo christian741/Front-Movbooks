@@ -33,7 +33,7 @@ export class BooksPage implements OnInit {
 
   async loadBooks() {
     const filters: BookFilter = {
-      pageSize: 1000,
+      pageSize: 10,
       pageNumber: 1,
       title: '',
       aggregated: true

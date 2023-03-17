@@ -10,7 +10,7 @@ export class User{
     avatar?: string;
     image?: string;
     enabled?: boolean;
-    registrationDate: Date;
+    registrationDate?: Date;
 }
 
 

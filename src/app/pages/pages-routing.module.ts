@@ -6,6 +6,10 @@ import { UserGuard } from '../guards/user.guard';
 
 const routes: Routes = [
   {
+    path: 'general',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
+  },
+  {
     path: 'dashboard',
     canLoad: [AuthGuard, UserGuard],
     canActivate: [AuthGuard, UserGuard],

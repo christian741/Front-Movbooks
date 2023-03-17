@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { PipesModule } from '../../pipes/pipes.module';
 
 import { RegisterPage } from './register.page';
 import { ComponentsModule } from '../../components/components.module';
@@ -14,7 +15,8 @@ import { ComponentsModule } from '../../components/components.module';
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild([{ path: '', component: RegisterPage }]),
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [RegisterPage]
 })

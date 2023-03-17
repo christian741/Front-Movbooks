@@ -1,3 +1,34 @@
 .ion-item {
     margin: 0px !important;
 }
+.ion-label {
+    font-size: calc(1em + 1vw)
+}
+.grid-titles {
+    border-right: rgba(0, 0, 0, .5) 1px solid;
+}
+.active:hover, .active:active {
+    background-color: var(--ion-color-tertiary-tint, #6370ff) !important;
+    color: rgb(252, 240, 240);
+}
+.register {
+    background-color: var(--ion-color-tertiary-tint, #6370ff) !important;
+    color: rgb(252, 240, 240);
+}
+
+small {
+    font-weight: 700;
+}
+
+#avatar-container {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+#avatar-login {
+    width: 20%;
+    border-radius: 100%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+    margin-bottom: 10px;
+}

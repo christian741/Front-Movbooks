@@ -15,6 +15,10 @@ import { ToastService } from './../../services/toast.service';
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
+  showPassword = false;
+  passwordToggleIcon = 'eye';
+
+  routeActive = true;
 
   constructor(
     private fb: FormBuilder,
@@ -77,5 +81,18 @@ export class LoginPage implements OnInit {
 
   ionViewDidLeave(): void {
     this.loginForm.reset();
+  }
+
+  tooglePassword(){
+    this.showPassword = !this.showPassword;
+    if(this.showPassword){
+      this.passwordToggleIcon = 'eye-off';
+    }else{
+      this.passwordToggleIcon = 'eye';
+    }
+  }
+
+  activeTitle() {
+    this.routeActive = !this.routeActive;
   }
 }

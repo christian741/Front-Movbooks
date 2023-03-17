@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { trigger, transition, style, animate } from '@angular/animations';\nexport const cardAnimation = trigger('cardAnimation', [transition(':enter', [style({\n  opacity: 0,\n  transform: 'translateX(-200px)'\n}), animate('.3s', style({\n  opacity: 1,\n  transform: 'none'\n}))])]);","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

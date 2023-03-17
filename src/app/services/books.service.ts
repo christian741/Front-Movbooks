@@ -32,11 +32,9 @@ export class BooksService {
                   retry(2),
                   map(results => {
                     if (results.totalItems !== 0) {
-                      console.log(results.results.items[0]);
                       return results.items[0];
-                    } else {
-                      return undefined;
                     }
+                    return undefined;
                   }),
                   catchError(err => undefined)
                 );

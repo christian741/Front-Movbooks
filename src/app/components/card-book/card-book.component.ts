@@ -21,7 +21,7 @@ export class CardBookComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.bookDetails);
+    // console.log([this.bookDetails]);
   }
 
   details(bookId: number) {
