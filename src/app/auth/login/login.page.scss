@@ -1,16 +1,41 @@
+$color-card: #6370ff;
+$color-write: #f0f0f4;
+
 #avatar-container {
     width: 100%;
     text-align: center;
     margin: 15px 0px;
 }
+.login {
+    background-color: var(--ion-color-tertiary-tint, $color-card) !important;
+    color: $color-write
+}
+
+.active:hover, .active:active {
+    background-color: var(--ion-color-tertiary-tint, #6370ff) !important;
+    color: rgb(252, 240, 240);
+}
+
+.grid-titles {
+    border-right: rgba(0, 0, 0, .5) 1px solid;
+}
 
 #avatar-login {
     width: 20%;
     border-radius: 100%;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0,.5);
     margin-bottom: 10px;
 }
 
 .ion-item {
     margin: 0px !important;
+}
+
+small {
+    font-weight: 700;
+}
+
+.title-login {
+    background-color: $color-card;
+    color: $color-write;
 }

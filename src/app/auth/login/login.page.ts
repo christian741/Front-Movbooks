@@ -18,6 +18,8 @@ export class LoginPage implements OnInit {
   showPassword = false;
   passwordToggleIcon = 'eye';
 
+  routeActive = true;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -88,5 +90,9 @@ export class LoginPage implements OnInit {
     }else{
       this.passwordToggleIcon = 'eye';
     }
+  }
+
+  activeTitle() {
+    this.routeActive = !this.routeActive;
   }
 }

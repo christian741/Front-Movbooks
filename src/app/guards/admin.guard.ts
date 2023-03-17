@@ -28,12 +28,12 @@ export class AdminGuard implements CanActivate, CanLoad {
     return this.authService.validateToken()
               .pipe(
                 tap(({ roleId }) => {
-                  if (roleId !== 2) {
+                  if (roleId === 2) {
                     this.router.navigateByUrl('/dashboard');
                   }
                 }),
                 map(({ roleId }) => {
-                  return (roleId === 2);
+                  return (roleId !== 2);
                 })
               );
   }

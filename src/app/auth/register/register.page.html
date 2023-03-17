@@ -5,12 +5,7 @@
         <ion-icon slot="icon-only" name="logo-ionic"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Regístrate</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/login" color="primary" shape="round" fill="outline">
-        Iniciar sesión
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Movbooks</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,101 +15,121 @@
       <ion-col size-md="6" size-sm="8" size-xs="12">
         <ion-card>
           <ion-card-content>
+
             <form [formGroup]="registerForm" (ngSubmit)="register()">
               <ion-grid>
+                <ion-row class="ion-text-center">
+                  <ion-col class="grid-titles active"
+                    (mouseenter)="activeTitle()"
+                    (mouseleave)="activeTitle()" routerLink="/login">
+                    <small>INICIAR SESIÓN</small>
+                  </ion-col>
+                  <ion-col [ngClass]="{'register' : routeActive == true}"
+                    routerLink="/register">
+                    <small>REGISTRARSE</small>
+                  </ion-col>
+                </ion-row>
                 <ion-row class="ion-justify-content-center">
+                  <ion-row>
+
+                    <ion-list id="avatar-container">
+                      <img [src]="'login.jpg' | avatarImg" id="avatar-login" />
+                      <br>
+                      <small style="font-size: 1rem;">Formulario de Registro</small>
+                    </ion-list>
+                  </ion-row>
+                  <ion-col size-md="12" size-sm="12">
+                    <!-- Nickname -->
+                    <ion-item>
+                      <ion-label position="floating">Nickname</ion-label>
+                      <ion-icon name="person-circle" slot="start" class="ion-align-self-center"></ion-icon>
+                      <ion-input type="text" maxlength="20" formControlName="nickname"></ion-input>
+                    </ion-item>
+                    <div>
+                      <small *ngIf="nickname.pristine || nickname.valid || nickname.pending"
+                        style="visibility: hidden;">none</small>
+                      <small class="text-danger" *ngIf="nickname.dirty && nickname.hasError('required')">
+                        El nickname es requerido
+                      </small>
+                      <small class="text-danger" *ngIf="nickname.dirty && nickname.hasError('minlength')">
+                        El nickname es demasiado corto
+                      </small>
+                      <small class="text-danger" *ngIf="nickname.dirty && nickname.hasError('uniqueNickname')">
+                        El nickname ya existe
+                      </small>
+                    </div>
+                  </ion-col>
+                  <ion-col>
+
+                    <!-- Correo electrónico -->
+                    <ion-item>
+                      <ion-label position="floating">Correo electrónico</ion-label>
+                      <ion-icon name="mail" slot="start" class="ion-align-self-center"></ion-icon>
+                      <ion-input type="text" maxlength="50" formControlName="email"></ion-input>
+                    </ion-item>
+                    <div>
+                      <small *ngIf="email.pristine || email.valid || email.pending"
+                        style="visibility: hidden;">none</small>
+                      <small class="text-danger" *ngIf="email.dirty && email.hasError('required')">
+                        El correo es <strong>requerido</strong>
+                      </small>
+                      <small class="text-danger" *ngIf="email.dirty && email.hasError('email')">
+                        Formato de correo inválido
+                      </small>
+                      <small class="text-danger" *ngIf="email.dirty && email.hasError('uniqueEmail')">
+                        El correo ya existe
+                      </small>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
                   <ion-col size="12" class="ion-margin-bottom">
                     <app-avatar-selector (avatarSelected)="avatar = $event"></app-avatar-selector>
                   </ion-col>
-                  <ion-col size-md="6" size-sm="12">
-                    <ion-list>
-                      <!-- Nickname -->
-                      <ion-item>
-                        <ion-label position="floating">Nickname</ion-label>
-                        <ion-icon name="person-circle" slot="start" class="ion-align-self-center"></ion-icon>
-                        <ion-input type="text" maxlength="20" formControlName="nickname"></ion-input>
-                      </ion-item>
-                      <div>
-                        <small *ngIf="nickname.pristine || nickname.valid || nickname.pending"
-                          style="visibility: hidden;">none</small>
-                        <small class="text-danger" *ngIf="nickname.dirty && nickname.hasError('required')">
-                          El nickname es requerido
-                        </small>
-                        <small class="text-danger" *ngIf="nickname.dirty && nickname.hasError('minlength')">
-                          El nickname es demasiado corto
-                        </small>
-                        <small class="text-danger" *ngIf="nickname.dirty && nickname.hasError('uniqueNickname')">
-                          El nickname ya existe
-                        </small>
-                      </div>
-
-                      <!-- Correo electrónico -->
-                      <ion-item>
-                        <ion-label position="floating">Correo electrónico</ion-label>
-                        <ion-icon name="mail" slot="start" class="ion-align-self-center"></ion-icon>
-                        <ion-input type="text" maxlength="50" formControlName="email"></ion-input>
-                      </ion-item>
-                      <div>
-                        <small *ngIf="email.pristine || email.valid || email.pending"
-                          style="visibility: hidden;">none</small>
-                        <small class="text-danger" *ngIf="email.dirty && email.hasError('required')">
-                          El correo es <strong>requerido</strong>
-                        </small>
-                        <small class="text-danger" *ngIf="email.dirty && email.hasError('email')">
-                          Formato de correo inválido
-                        </small>
-                        <small class="text-danger" *ngIf="email.dirty && email.hasError('uniqueEmail')">
-                          El correo ya existe
-                        </small>
-                      </div>
-                    </ion-list>
+                </ion-row>
+                <ion-row>
+                  <ion-col size-sm="12">
+                    <!-- Contraseña -->
+                    <ion-item>
+                      <ion-label position="floating">Contraseña</ion-label>
+                      <ion-icon name="key" slot="start" class="ion-align-self-end"></ion-icon>
+                      <ion-input [type]="showPassword ? 'text' : 'password'" maxlength="20"
+                        formControlName="password"></ion-input>
+                      <ion-icon [name]="passwordToggleIcon" slot="end" (click)="togglePassword()"
+                        class="ion-align-self-end"></ion-icon>
+                    </ion-item>
+                    <div>
+                      <small *ngIf="password.pristine || password.valid" style="visibility: hidden;">none</small>
+                      <small class="text-danger" *ngIf="password.dirty && password.hasError('required')">
+                        La contraseña es <strong>requerido</strong>
+                      </small>
+                      <small class="text-danger" *ngIf="password.dirty && password.hasError('minlength')">
+                        La contraseña es demasiado corta
+                      </small>
+                    </div>
                   </ion-col>
-                  <ion-col size-md="6" size-sm="12">
-                    <ion-list>
-                      <!-- Contraseña -->
-                      <ion-item>
-                        <ion-label position="floating">Contraseña</ion-label>
-                        <ion-icon name="key" slot="start" class="ion-align-self-end"></ion-icon>
-                        <ion-input [type]="showPassword ? 'text' : 'password'" maxlength="20"
-                          formControlName="password"></ion-input>
-                        <ion-icon [name]="passwordToggleIcon" slot="end" (click)="togglePassword()"
-                          class="ion-align-self-end"></ion-icon>
-                      </ion-item>
-                      <div>
-                        <small *ngIf="password.pristine || password.valid" style="visibility: hidden;">none</small>
-                        <small class="text-danger" *ngIf="password.dirty && password.hasError('required')">
-                          La contraseña es <strong>requerido</strong>
-                        </small>
-                        <small class="text-danger" *ngIf="password.dirty && password.hasError('minlength')">
-                          La contraseña es demasiado corta
-                        </small>
-                      </div>
-
-                      <!-- Confirmar Contraseña -->
-                      <ion-item>
-                        <ion-label position="floating">Confirmar contraseña</ion-label>
-                        <ion-icon name="key" slot="start" class="ion-align-self-center"></ion-icon>
-                        <ion-input [type]="showPasswordConfirm ? 'text' : 'password'" maxlength="20"
-                          formControlName="confirmPassword"></ion-input>
-                        <ion-icon [name]="passwordConfirmToggleIcon" slot="end" (click)="toggleConfirmPassword()"
-                          class="ion-align-self-end"></ion-icon>
-                      </ion-item>
-                      <div>
-                        <small *ngIf="confirmPassword.pristine || confirmPassword.valid"
-                          style="visibility: hidden;">none</small>
-                        <small class="text-danger"
-                          *ngIf="confirmPassword.dirty && confirmPassword.hasError('required')">
-                          El campo es <strong>requerido</strong>
-                        </small>
-                        <small class="text-danger"
-                          *ngIf="confirmPassword.dirty && confirmPassword.hasError('notEquals')">
-                          Las contraseñas no coinciden
-                        </small>
-                      </div>
-                    </ion-list>
+                  <ion-col>
+                    <!-- Confirmar Contraseña -->
+                    <ion-item>
+                      <ion-label position="floating">Confirmar contraseña</ion-label>
+                      <ion-icon name="key" slot="start" class="ion-align-self-center"></ion-icon>
+                      <ion-input [type]="showPasswordConfirm ? 'text' : 'password'" maxlength="20"
+                        formControlName="confirmPassword"></ion-input>
+                      <ion-icon [name]="passwordConfirmToggleIcon" slot="end" (click)="toggleConfirmPassword()"
+                        class="ion-align-self-end"></ion-icon>
+                    </ion-item>
+                    <div>
+                      <small *ngIf="confirmPassword.pristine || confirmPassword.valid"
+                        style="visibility: hidden;">none</small>
+                      <small class="text-danger" *ngIf="confirmPassword.dirty && confirmPassword.hasError('required')">
+                        El campo es <strong>requerido</strong>
+                      </small>
+                      <small class="text-danger" *ngIf="confirmPassword.dirty && confirmPassword.hasError('notEquals')">
+                        Las contraseñas no coinciden
+                      </small>
+                    </div>
                   </ion-col>
                 </ion-row>
-
                 <ion-row class="ion-justify-content-center">
                   <ion-col size-md="6" size-sm="8" size-xs="12">
                     <ion-button expand="block" color="tertiary"

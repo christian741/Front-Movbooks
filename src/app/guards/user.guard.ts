@@ -29,12 +29,12 @@ export class UserGuard implements CanActivate, CanLoad {
     return this.authService.validateToken()
           .pipe(
             tap(({ roleId }) => {
-              if (roleId !== 1) {
+              if (roleId === 1) {
                 this.router.navigateByUrl('/admin');
               }
             }),
             map(({ roleId }) => {
-              return (roleId === 1);
+              return (roleId !== 1);
             })
           );
   }

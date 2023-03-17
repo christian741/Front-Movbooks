@@ -1,16 +1,11 @@
 <ion-header color="light">
   <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button>
-          <ion-icon slot="icon-only" name="flash"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-title>Iniciar Sesión</ion-title>
-      <ion-buttons slot="end">
-        <ion-button routerLink="/register" color="primary" fill="outline" shape="round">
-          Regístrate
-        </ion-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="flash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Movbooks</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,12 +17,22 @@
           <ion-card-content>
             <form [formGroup]="loginForm" (ngSubmit)="login()">
               <ion-list>
-                <div id="avatar-container">
-                  <img [src]="'login.jpg' | avatarImg" id="avatar-login"/>
+                <ion-list id="avatar-container">
+                  <img [src]="'login.jpg' | avatarImg" id="avatar-login" />
                   <br>
-                  <small>INICIAR SESIÓN</small>
-                </div>
-                
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col [ngClass]="{'login' : routeActive == true}" class="grid-titles" routerLink="/login">
+                        <small>INICIAR SESIÓN</small>
+                      </ion-col>
+                      <ion-col class="active" (mouseenter)="activeTitle()" (mouseleave)="activeTitle()"
+                        routerLink="/register">
+                        <small>REGISTRARSE</small>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-list>
+
                 <!-- Correo electrónico -->
                 <ion-item>
                   <ion-label position="floating">Correo electrónico</ion-label>
@@ -35,10 +40,8 @@
                   <ion-input type="text" formControlName="email"></ion-input>
                 </ion-item>
                 <div>
-                  <small *ngIf="email.pristine || email.valid"
-                    style="visibility: hidden;">none</small>
-                  <small class="text-danger" 
-                    *ngIf="email.dirty && email.hasError('required')">
+                  <small *ngIf="email.pristine || email.valid" style="visibility: hidden;">none</small>
+                  <small class="text-danger" *ngIf="email.dirty && email.hasError('required')">
                     El correo es <strong>requerido</strong>
                   </small>
                 </div>
@@ -47,18 +50,17 @@
                 <ion-item>
                   <ion-label position="floating">Contraseña</ion-label>
                   <ion-icon name="key" slot="start" class="ion-align-self-end"></ion-icon>
-                  <ion-input [type]="showPassword ? 'text' : 'password'" maxlength="20" formControlName="password" ></ion-input>
-                  <ion-icon [name]="passwordToggleIcon" slot="end" (click)="tooglePassword()" class="ion-align-self-end"></ion-icon>
+                  <ion-input [type]="showPassword ? 'text' : 'password'" maxlength="20"
+                    formControlName="password"></ion-input>
+                  <ion-icon [name]="passwordToggleIcon" slot="end" (click)="tooglePassword()"
+                    class="ion-align-self-end"></ion-icon>
                 </ion-item>
                 <div>
-                  <small *ngIf="password.pristine || password.valid"
-                    style="visibility: hidden;">none</small>
-                  <small class="text-danger" 
-                    *ngIf="password.dirty && password.hasError('required')">
+                  <small *ngIf="password.pristine || password.valid" style="visibility: hidden;">none</small>
+                  <small class="text-danger" *ngIf="password.dirty && password.hasError('required')">
                     La contraseña es <strong>requerida</strong>
                   </small>
-                  <small class="text-danger" 
-                    *ngIf="password.dirty && password.hasError('minlength')">
+                  <small class="text-danger" *ngIf="password.dirty && password.hasError('minlength')">
                     La contraseña es demasiado corta
                   </small>
                 </div>
@@ -67,23 +69,18 @@
               <ion-grid>
                 <ion-row class="ion-justify-content-center">
                   <ion-col size-md="6" size-sm="8" size-xs="12">
-                    <ion-button expand="block" [disabled]="loginForm.invalid" color="tertiary" type="submit" shape="round">Ingresar</ion-button>
+                    <ion-button expand="block" [disabled]="loginForm.invalid" color="tertiary" type="submit"
+                      shape="round">Ingresar</ion-button>
                   </ion-col>
                 </ion-row>
               </ion-grid>
             </form>
+            <div class="ion-text-center">
+              <a routerLink="/password-recovery">¿Olvidaste tu contraseña?</a>
+            </div>
           </ion-card-content>
         </ion-card>
-        <div class="ion-text-center">
-          <a routerLink="/password-recovery">¿Olvidaste tu contraseña?</a>
-        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>Footer</ion-title>
-  </ion-toolbar>
-</ion-footer>
